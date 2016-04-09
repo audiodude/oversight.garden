@@ -43,6 +43,7 @@
     "numeral": "^1.5.3"
   },
   "devDependencies": {
+    "heapdump": "^0.3.7",
     "intercept-stdout": "^0.1.2",
     "jshint": "^2.9.1",
     "mocha": "^2.3.4",

@@ -14,7 +14,18 @@
 var fs = require('fs'),
     path = require('path'),
     async = require('async'),
-    glob = require('glob');
+    glob = require('glob'),
+    heapdump = require('heapdump'),
+    process = require('process');
+
+var nextMBThreshold = 0;
+setInterval(function() {
+  var memMB = process.memoryUsage().rss / 1048576;
+  if (memMB > nextMBThreshold) {
+    heapdump.writeSnapshot();
+    nextMBThreshold += 100;
+  }
+}, 15000);
 
 var config = require("../config/config"),
     elasticsearch = require("elasticsearch"),
